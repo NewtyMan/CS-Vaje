@@ -1,0 +1,69 @@
+┌──(kali㉿kali)-[~/labops/gnupg-attacker]
+└─$ gpg --homedir "$HOME/labops/gnupg-attacker" --armor --export > gnupg-attacker.asc
+
+┌──(kali㉿kali)-[~/labops/gnupg-employee]
+└─$ gpg --homedir . --import gnupg-attacker.asc
+gpg: key DC0A5D74C129FB04: public key "LabOps Release <labops-release@labops.example>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+
+┌──(kali㉿kali)-[~/labops/gnupg-employee]
+└─$ echo 'Super secret message for labops-release team!!!' > message.txt
+
+┌──(kali㉿kali)-[~/labops/gnupg-employee]
+└─$ gpg --homedir . --encrypt --sign --armor --recipient labops-release@labops.example message.txt
+gpg: DC0A5D74C129FB04: There is no assurance this key belongs to the named user
+
+pub  rsa4096/DC0A5D74C129FB04 2026-11-19 LabOps Release <labops-release@labops.example>
+ Primary key fingerprint: 6BC6 9814 F9BE A7CE A6C3  7D9E DC0A 5D74 C129 FB04
+
+It is NOT certain that the key belongs to the person named
+in the user ID.  If you *really* know what you are doing,
+you may answer the next question with yes.
+
+Use this key anyway? (y/N) y
+
+┌──(kali㉿kali)-[~/labops/gnupg-employee]
+└─$ cat message.txt.asc 
+-----BEGIN PGP MESSAGE-----
+
+hQIMA9wKXXTBKfsEARAAh9PX9+KM+41rssTBOQYlsqeN0dGICDYJJ1/Pg12WkG1n
+T0nu6MAXJto7xzU2wJPTzBiXNE3SneOdr0ODKiRHw7I/CDklX1HcW6hYhyY0ic4m
+2Sa2sk4AScArEtEOz7TmGgsJ+g2CCAXMNmRchLT18KkhXfpIR2S3D2h6QE7yQJTF
+p2VONP4TCGZXTdPIR1mGv8qZhn3KcaNMU9D2ZcQPxoAjjeyHqtXHxf5XZX+XJhOV
+erkeVVtMW3/mV1xt79zi55zz9PrdAhfzrTQJccpv/Zv3dx0NU7wy04KMmf/x9ACK
+joBqgf3VKFrj3QWNZ+MQTUtoR00pAdt1ItZ+R1u/jqgGyNmm8Ze310Q2MsurDWce
+sz/KfoY0H/uurMrH/8+hBiUymc3joRo/vCGrxFeNDkPOdfNBB8leco+9Vepdt10H
+f8NcVAFp5KVNbNl555d3SCJ5gyM0R8UYCEKeTiIg2t1lMv6O2YjuIP6+5EJOK4tE
+s+d/AlpKepZWBh+8YgHJJLbwbje1eHWS7PTnZE8dSY4FAP0fmK43mUrTkGGCQB6N
+oBwtLDUA9IrpwcZHvqhdiGOCMuGeaQBTsR6Y+usAe9D4AxcM0oigSM0Rxwueny0p
+99tkXu87VYYHwkwTJthj6T4WDQ2Tvd58lFVEY9LZTOvScWw/P+/Jsajqd4BpDwLS
+6QEC23qSkNOS63NXwkvDLYeaIiMcVIYKEIBQ7Yq/oULvmdqwloD837Mh11JMvDL6
+OwLDO9fIAKzd1dU6jxbROubKi8mTEOlx72cf0VeYfwguq/AVrCZh7D2kQ1JmEhUO
+FLuBdgLqZBLXA4jGYpM7584bk9nSkzzuJC/LDJqUuDtZinbcAjMcHEtfRDVoBn1R
+9SOXH8u6tAiB3RQoXaevpQatUTh5LvfhkOjyKlgnJociz1t0XFm9/a3kHhcDoj8B
+K7crGOi4Tg2HfQNwEIlb8O2gMtpEsEfl5rJkAweepceP177KiNAAoiqej5s8t1qe
+bHRsWyRoxdkRWDt9yJF4MVl4sBsZpP24LW2OUebit1/PEE8lLxI7nkX9OocW+yYv
+qVV6MzyP6sN1rb6aflpEvXWhIXbEWvzotcNgahDl+JVbwjwizWr6REf5tCbI60vZ
++vSREFsmpgL9AAODzgQ1a5m3JddqiQLVM91iM8vziZlXxj5fUZDQqznY4iU6Loid
+GdW2IMILHs8fu845EWdLzXKc+PwQieWxJROtydehpo+CadJ8i2d56vDuP9yY8hDg
+PwtdGIUCUxXi1dKNZRWPc3nsnEYNeWN/CU383V/eEEAj0dYQi1jbNMTl3untBdAG
+k/XovpBI94MDO07UTuAKRmgCsD1Q93QtMNV8abZpyBGWvopQ/+czM0qgfThH5qnk
+5ytHgnSNSelAtjy89bdLgxnyK5RDNA0GhSJyJNCA4z2L65XyYoGmtZqC6TpkSrIl
+R/5RPy+4gxN0xKeRPiKzJuwDHDUQT6HKxopNOripft2+lZJTfUSnpH0XOu/8Z+B4
+KRQmKhbdNVYwsbsrcq/M1/+rOSGOx3du/X2nL7qeUgUDWJyD9+1Vu/EJcyTHgveb
+53VpJ+UDEhiHmMjDnTBx59hFdRvI1AwqoaJ/8FZzU5U=
+=pRA6
+-----END PGP MESSAGE-----
+
+┌──(kali㉿kali)-[~/labops/gnupg-attacker]
+└─$ gpg --homedir . --decrypt message.txt.asc                                    
+gpg: encrypted with rsa4096 key, ID DC0A5D74C129FB04, created 2026-11-19
+      "LabOps Release <labops-release@labops.example>"
+Super secret message for labops-release team!!!
+gpg: Signature made Thu 19 Nov 2026 11:18:58 AM EST
+gpg:                using RSA key C4050B76E988278FA9C10D47CD4533D8CFEAAD51
+gpg: Good signature from "LabOps Employee <employee@labops.example>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: C405 0B76 E988 278F A9C1  0D47 CD45 33D8 CFEA AD51
